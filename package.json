@@ -1,24 +1,52 @@
 {
-  "name": "gemini",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "12.1.6",
-    "react": "18.1.0",
-    "react-dom": "18.1.0"
-  },
-  "devDependencies": {
-    "@types/node": "17.0.31",
-    "@types/react": "18.0.9",
-    "@types/react-dom": "18.0.3",
-    "eslint": "8.15.0",
-    "eslint-config-next": "12.1.6",
-    "typescript": "4.6.4"
-  }
+	"name": "gemini",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "concurrently \"next --port $PORT\" \"cd studio && sanity start\"",
+		"build": "echo 'Building Sanity to public/studio' && cd studio && sanity build ../public/studio -y && cd .. && next build",
+		"start": "vercel dev",
+		"postinstall": "lerna bootstrap",
+		"pre-commit": "lint-staged"
+	},
+	"lint-staged": {
+		"lib/**/*.{ts,tsx}": [
+			"eslint --fix",
+			"prettier --write",
+			"tsc --noEmit --composite false"
+		],
+		"components/**/*.{ts,tsx}": [
+			"eslint --fix",
+			"prettier --write",
+			"tsc --noEmit --composite false"
+		],
+		"pages/**/*.{ts,tsx}": [
+			"eslint --fix",
+			"prettier --write",
+			"tsc --noEmit --composite false"
+		]
+	},
+	"dependencies": {
+		"@portabletext/react": "^1.0.6",
+		"@sanity/client": "^3.3.0",
+		"next": "12.1.6",
+		"next-sanity": "^0.5.2",
+		"next-sanity-image": "^3.2.1",
+		"react": "18.1.0",
+		"react-dom": "18.1.0"
+	},
+	"devDependencies": {
+		"@sanity/cli": "^2.29.8",
+		"@types/node": "17.0.31",
+		"@types/react": "18.0.9",
+		"@types/react-dom": "18.0.3",
+		"concurrently": "^7.1.0",
+		"eslint": "8.15.0",
+		"eslint-config-next": "12.1.6",
+		"husky": "^8.0.1",
+		"lerna": "^4.0.0",
+		"lint-staged": "^12.4.1",
+		"prettier": "^2.6.2",
+		"typescript": "4.6.4"
+	}
 }
