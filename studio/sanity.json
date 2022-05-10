@@ -1,10 +1,10 @@
 {
   "root": true,
   "project": {
-    "name": "Gemini"
+    "name": "Next-Sanity-Starter"
   },
   "api": {
-    "projectId": "cltm43gc",
+    "projectId": "",
     "dataset": "production"
   },
   "plugins": [
