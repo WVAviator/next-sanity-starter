@@ -38,11 +38,6 @@ const SanityContent = ({ pageContent }: SanityContentProps) => {
 					content={pageContent.title}
 				/>
 				<meta
-					property="og:url"
-					key="ogUrl"
-					content={`https://www.palsofpawssociety.org/`}
-				/>
-				<meta
 					property="og:description"
 					key="ogDescription"
 					content={pageContent.description}
